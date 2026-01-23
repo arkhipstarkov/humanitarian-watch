@@ -27,8 +27,8 @@ const EVENTS_DATABASE = [
       "/images/patriot_zap04.png"
     ],
     videos: [
-      "/videos/patriot_test.mp4",
-      "/videos/patriot_delivery.mp4"
+      "/video/patriot_test.mp4",
+      "/video/patriot_delivery.mp4"
     ]
   },
   {
@@ -52,7 +52,7 @@ const EVENTS_DATABASE = [
       "/images/dozor_tools04.png"
     ],
     videos: [
-      "/videos/tools01.mp4"
+      "/video/tools01.mp4"
     ]
   }
 ];
