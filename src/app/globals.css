@@ -1,26 +1,44 @@
 @import "tailwindcss";
 
+/* Используем стандартные CSS переменные, которые понимает любой браузер и редактор */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-inter: 'Inter', sans-serif;
+  
+  /* Фирменные цвета из твоего логотипа */
+  --brand-copper: #B35B2A;
+  --brand-dark: #2D3748;
+  --brand-blue: #2563eb;
+  
+  /* Цвета для фона и текста */
+  --background: #FDFDFF;
+  --foreground: #1A1C20;
 }
 
 body {
-  background: var(--background);
+  font-family: var(--font-inter);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Исправляем ошибку unknownProperty: используем стандартное свойство */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Кастомные утилиты, которые мы сможем применять в коде */
+@layer utilities {
+  .text-brand-copper {
+    color: var(--brand-copper);
+  }
+  .bg-brand-copper {
+    background-color: var(--brand-copper);
+  }
+  .border-brand-copper {
+    border-color: var(--brand-copper);
+  }
+  .bg-gradient-brand {
+    background: linear-gradient(90deg, #B35B2A 0%, #E67E22 100%);
+  }
 }
