@@ -1,33 +1,54 @@
 "use client";
 
 import React, { use } from 'react';
-// Оставляем иконки и обязательно используем их ниже
-import { ArrowLeft, Clock, Share2, Bookmark } from 'lucide-react'; 
+import { ArrowLeft, Clock, Share2, Bookmark, CheckCircle2 } from 'lucide-react'; 
 import Link from 'next/link';
 
 const NEWS_DATABASE = [
   {
     id: "1",
-    category: "Законодательство",
-    date: "22 Января, 2026",
-    title: "Новые льготы для участников СВО: подробный разбор указа",
-    content: "Президент подписал новый указ, расширяющий меры социальной поддержки. Основные изменения коснутся порядка предоставления земельных участков и компенсации затрат на ЖКХ. Юристы фонда подготовили подробную инструкцию по оформлению документов...",
-    quote: "Наша задача — сделать так, чтобы юридическая помощь была доступна в один клик без бюрократических проволочек."
+    category: "Выплаты",
+    date: "24 Января, 2026",
+    title: "Индексация выплат по инвалидности в 2026 году",
+    content: [
+      "В 2026 году участники СВО, получившие инвалидность, могут рассчитывать на комплексную поддержку. Основные изменения включают ежемесячные компенсации (КВЗ), ЕДВ с индексацией и социальные пенсии. С 1 февраля 2026 года ожидается индексация ЕДВ на 6,8%, а страховые пенсии будут проиндексированы уже в январе.",
+      "Размеры ежемесячных компенсаций за военную травму в начале года составляют:",
+      "• I группа: 25 782,85 руб.",
+      "• II группа: 12 891,40 руб.",
+      "• III группа: 5 156,57 руб.",
+      "Помимо этого, предусмотрена разовая выплата в размере 1 млн рублей в качестве доплаты к уже полученным суммам (оформляется через Фонд «Защитники Отечества»)."
+    ],
+    quote: "В 2026 году мы переходим на проактивное начисление льгот, чтобы ветеранам не приходилось собирать лишние справки."
   },
   {
     id: "2",
-    category: "События",
-    date: "20 Января, 2026",
-    title: "Открытие нового филиала фонда в Ростове-на-Дону",
-    content: "Мы расширяем географию присутствия. Новый офис оснащен современным оборудованием для первичной реабилитации и кабинетами психологической помощи. Прием граждан начнется уже со следующего понедельника...",
-    quote: "Каждый регион должен иметь точку опоры для ветеранов и их семей."
+    category: "Развитие",
+    date: "23 Января, 2026",
+    title: "Открытие филиала Гуманитарного дозора в Донецке",
+    content: [
+      "Мы официально объявляем об открытии полномасштабного представительства «Гуманитарного дозора» в столице ДНР. Донецкий филиал станет ключевым логистическим узлом для распределения помощи по всей линии фронта.",
+      "Штаб включает в себя склад высокотехнологичного оборудования (РЭБ, дроны), центр распределения медицины и юридический отдел для помощи бойцам на местах. Теперь сроки доставки необходимых средств сократятся втрое.",
+      "Прием волонтеров и обработка заявок от подразделений начнутся немедленно."
+    ],
+    quote: "Быть рядом с теми, кто на передовой — единственный способ работать эффективно."
+  },
+  {
+    id: "3",
+    category: "Земля",
+    date: "21 Января, 2026",
+    title: "Земельный вопрос: новые правила получения участков",
+    content: [
+      "В 2026 году процедура получения земли участниками СВО становится более гибкой. Главное нововведение — возможность выбора между физическим участком и денежной компенсацией (земельным сертификатом). Это особенно актуально для регионов с дефицитом свободных земель.",
+      "Для контрактников в Ленинградской области сертификаты выдаются без привязки к прописке. Также рассматривается инициатива упрощенного получения земли без проведения аукционов при стаже службы в зоне СВО более 3 лет.",
+      "Для оформления необходимо подтвердить статус ветерана и подать заявление через Госуслуги или МФЦ."
+    ],
+    quote: "Земельный сертификат — это свобода выбора: построить дом или вложить средства в будущее семьи."
   }
 ];
 
 export default function ArticlePage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
   const id = resolvedParams.id;
-
   const article = NEWS_DATABASE.find(item => item.id === id);
 
   if (!article) {
@@ -67,39 +88,38 @@ export default function ArticlePage({ params }: { params: Promise<{ id: string }
 
         <div className="flex items-center justify-between py-10 border-y border-slate-100 mb-16">
           <div className="flex items-center gap-5">
-            <div className="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-white font-black text-xl italic shadow-xl">
-              ГД
-            </div>
+            <div className="w-14 h-14 bg-slate-900 rounded-2xl flex items-center justify-center text-white font-black text-xl italic shadow-xl">ГД</div>
             <div>
               <p className="text-sm font-black uppercase tracking-tight text-slate-900">Редакция Дозора</p>
               <p className="text-xs text-slate-400 font-bold uppercase tracking-widest leading-none mt-1">Official Press</p>
             </div>
           </div>
           
-          {/* ВОТ ЗДЕСЬ МЫ ИСПОЛЬЗУЕМ Share2 И Bookmark, ЧТОБЫ ESLINT НЕ РУГАЛСЯ */}
           <div className="flex gap-3">
-            <button className="p-4 bg-slate-50 rounded-2xl text-slate-400 hover:bg-blue-600 hover:text-white transition-all shadow-sm">
-              <Share2 size={20} />
-            </button>
-            <button className="p-4 bg-slate-50 rounded-2xl text-slate-400 hover:bg-blue-600 hover:text-white transition-all shadow-sm">
-              <Bookmark size={20} />
-            </button>
+            <button className="p-4 bg-slate-50 rounded-2xl text-slate-400 hover:bg-blue-600 hover:text-white transition-all"><Share2 size={20} /></button>
+            <button className="p-4 bg-slate-50 rounded-2xl text-slate-400 hover:bg-blue-600 hover:text-white transition-all"><Bookmark size={20} /></button>
           </div>
         </div>
       </header>
 
       <main className="max-w-3xl mx-auto px-8">
-        <div className="prose prose-slate prose-xl text-slate-600 leading-[1.8] font-medium">
-          <p className="mb-10 text-lg md:text-xl text-slate-900 font-semibold leading-relaxed">
-            {article.content.split('.')[0]}.
-          </p>
-          <p className="mb-10 text-lg md:text-xl">
-            {article.content}
-          </p>
+        <div className="text-slate-600 leading-[1.8] font-medium text-lg md:text-xl">
+          {article.content.map((paragraph, idx) => (
+            <p key={idx} className={`mb-8 ${paragraph.startsWith('•') ? 'pl-6 text-slate-900 font-bold' : ''}`}>
+              {paragraph}
+            </p>
+          ))}
 
           <div className="my-16 p-10 bg-slate-50 rounded-[48px] border-l-[12px] border-blue-600 italic text-2xl text-slate-800 font-bold leading-relaxed relative">
             <span className="absolute top-4 left-4 text-blue-100 text-8xl font-serif select-none tracking-tighter">&ldquo;</span>
             <p className="relative z-10">{article.quote}</p>
+          </div>
+          
+          <div className="p-8 bg-blue-50 rounded-3xl border border-blue-100 flex items-start gap-4">
+            <CheckCircle2 className="text-blue-600 shrink-0" size={24} />
+            <p className="text-sm text-blue-900 font-bold uppercase tracking-wide">
+              Оформляйте выплаты и льготы через Социальный фонд России (СФР) или фонд «Защитники Отечества».
+            </p>
           </div>
         </div>
       </main>

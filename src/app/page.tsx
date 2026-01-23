@@ -1,5 +1,5 @@
 import React from 'react';
-import { Newspaper, Calendar, Heart, ArrowRight, Target } from 'lucide-react';
+import { Newspaper, Heart, ArrowRight, Target, ShieldCheck, Zap } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -51,23 +51,75 @@ export default function Home() {
               <span className="text-blue-600">защищает нас.</span>
             </h1>
             <p className="text-2xl text-slate-500 font-medium leading-relaxed max-w-2xl">
-              Современная экосистема поддержки ветеранов. Мы объединяем технологии, людей и стальную волю для достойного возвращения домой.
+              Единый центр оперативной помощи. От снабжения передовой до комплексной реабилитации и правовой поддержки ветеранов дома.
             </p>
           </div>
           
-          {/* Мини-виджет статуса (Акцент на медном цвете) */}
           <div className="lg:col-span-4">
             <div className="bg-white p-8 rounded-[40px] border border-slate-100 shadow-[0_40px_80px_rgba(0,0,0,0.06)] relative overflow-hidden group">
               <div className="absolute top-0 right-0 w-24 h-24 bg-[#B35B2A]/5 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110" />
               <Target className="text-[#B35B2A] mb-6" size={32} />
               <h4 className="text-sm font-black uppercase tracking-widest mb-2">Активный сбор</h4>
-              <p className="text-2xl font-bold tracking-tight mb-6 leading-tight">Реабилитационный центр «Восток»</p>
+              <p className="text-2xl font-bold tracking-tight mb-6 leading-tight">Средства РЭБ для передовой</p>
               <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden mb-4">
-                <div className="h-full bg-blue-600 w-[65%] shadow-[0_0_10px_rgba(179,91,42,0.3)]" />
+                <div className="h-full bg-blue-600 w-[78%] shadow-[0_0_10px_rgba(37,99,235,0.3)]" />
               </div>
               <Link href="/events" className="text-xs font-black uppercase tracking-widest text-blue-600 flex items-center gap-2 group-hover:gap-3 transition-all">
-                Подробнее <ArrowRight size={14} />
+                Помочь подразделению <ArrowRight size={14} />
               </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Секция ФОТО деятельности */}
+        <div className="mb-32">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <h2 className="text-5xl font-[950] uppercase italic tracking-tighter leading-none">
+              Дозор в <span className="text-blue-600">действии</span>
+            </h2>
+            <p className="text-slate-400 font-medium max-w-sm text-right">
+              Реальные отчеты, доставка грузов и работа в центрах восстановления.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-[600px]">
+            <div className="md:col-span-2 relative rounded-[40px] overflow-hidden group">
+              <Image 
+                src="/images/photo-front-1.png" 
+                alt="Фронт" 
+                fill 
+                className="object-cover transition-transform duration-700 group-hover:scale-110" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8 text-white">
+                <span className="text-sm font-black uppercase tracking-widest italic">Поставки на ЛБС</span>
+              </div>
+            </div>
+
+            <div className="relative rounded-[40px] overflow-hidden group">
+              <Image 
+                src="/images/photo-back-1.png" 
+                alt="Реабилитация" 
+                fill 
+                className="object-cover transition-transform duration-700 group-hover:scale-110" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8 text-white">
+                <span className="text-sm font-black uppercase tracking-widest italic">Реабилитация</span>
+              </div>
+            </div>
+
+            <div className="grid grid-rows-2 gap-4">
+              <div className="relative rounded-[32px] overflow-hidden group">
+                <Image 
+                  src="/images/photo-logistics.png" 
+                  alt="Логистика" 
+                  fill 
+                  className="object-cover transition-transform duration-700 group-hover:scale-110" 
+                />
+              </div>
+              <div className="relative rounded-[32px] overflow-hidden group bg-blue-600 flex flex-col justify-center p-6 text-white text-center">
+                <Zap className="mx-auto mb-2" size={24} />
+                <p className="text-lg font-black uppercase leading-tight italic">Быстрая логистика</p>
+              </div>
             </div>
           </div>
         </div>
@@ -82,9 +134,9 @@ export default function Home() {
           />
           <FeatureCard 
             link="/events"
-            icon={<Calendar size={32} />}
+            icon={<ShieldCheck size={32} />}
             title="Миссии"
-            desc="Действующие сборы, гуманитарные конвои и отчеты о проделанной работе."
+            desc="Сборы спецсредств, гуманитарные конвои и отчеты из зон выполнения задач."
             variant="copper"
           />
           <FeatureCard 

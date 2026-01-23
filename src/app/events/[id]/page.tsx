@@ -1,28 +1,11 @@
 "use client";
 
 import React, { use } from 'react';
-import { ArrowLeft, ShieldCheck, Download, MapPin, Box, Users2, Target, Settings } from 'lucide-react';
+import { ArrowLeft, ShieldCheck, Download, Box, Target, Settings, Play } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-// Имитируем базу данных миссий
 const EVENTS_DATABASE = [
-  {
-    id: "konvoy-sever",
-    status: "Завершено",
-    title: "Гуманитарный конвой «Север-24»",
-    fullDesc: "Масштабная операция по доставке медицинского оборудования и медикаментов в госпитали северного направления. В ходе миссии было преодолено более 1500 км в сложных погодных условиях.",
-    date: "15 Января, 2026",
-    location: "Донецкое направление",
-    stats: [
-      { label: "Груз", value: "12 тонн", icon: <Box size={18} /> },
-      { label: "Волонтеры", value: "8 человек", icon: <Users2 size={18} /> },
-      { label: "Точки", value: "4 госпиталя", icon: <MapPin size={18} /> }
-    ],
-    color: "bg-emerald-500",
-    coverImage: "/images/patriot_pikap.png", // Заглушка, если нет фото
-    gallery: []
-  },
   {
     id: "patriot-pickup",
     status: "Завершено",
@@ -42,9 +25,12 @@ const EVENTS_DATABASE = [
       "/images/patriot_zap02.png",
       "/images/patriot_zap03.png",
       "/images/patriot_zap04.png"
+    ],
+    videos: [
+      "/videos/patriot_test.mp4",
+      "/videos/patriot_delivery.mp4"
     ]
   },
-  // Добавь это в EVENTS_DATABASE в файле [id]/page.tsx
   {
     id: "tools-mission",
     status: "Сбор средств",
@@ -57,13 +43,16 @@ const EVENTS_DATABASE = [
       { label: "Приоритет", value: "Критический", icon: <ShieldCheck size={18} /> },
       { label: "Собрано", value: "15%", icon: <Box size={18} /> }
     ],
-    color: "bg-orange-500", // Оранжевый цвет подчеркивает, что это активный процесс
-    coverImage: "/images/tools_cover.png", // Сюда потом положишь фото инструментов
+    color: "bg-orange-500",
+    coverImage: "/images/tools_cover.png",
     gallery: [
       "/images/dozor_tools01.png",
       "/images/dozor_tools02.png",
       "/images/dozor_tools03.png",
       "/images/dozor_tools04.png"
+    ],
+    videos: [
+      "/videos/tools01.mp4"
     ]
   }
 ];
@@ -71,35 +60,25 @@ const EVENTS_DATABASE = [
 export default function EventDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
   const id = resolvedParams.id;
-
   const event = EVENTS_DATABASE.find(item => item.id === id);
 
-  if (!event) {
-    return (
-      <div className="min-h-screen flex items-center justify-center font-sans">
-        <div className="text-center">
-          <h1 className="text-2xl font-black uppercase mb-4">Миссия не найдена</h1>
-          <Link href="/events" className="text-blue-600 font-bold hover:underline">Вернуться к списку</Link>
-        </div>
+  if (!event) return (
+    <div className="min-h-screen flex items-center justify-center font-sans">
+      <div className="text-center">
+        <h1 className="text-2xl font-black mb-4 uppercase">Миссия не найдена</h1>
+        <Link href="/events" className="text-blue-600 font-bold hover:underline">Назад к списку</Link>
       </div>
-    );
-  }
+    </div>
+  );
 
   return (
     <div className="min-h-screen bg-white pb-20 font-sans">
-      {/* Шапка с фоновым изображением */}
-      <div className="h-[60vh] bg-slate-900 relative flex items-end overflow-hidden">
+      {/* Шапка */}
+      <div className="h-[65vh] bg-slate-900 relative flex items-end overflow-hidden">
         {event.coverImage && (
-          <Image 
-            src={event.coverImage} 
-            alt={event.title} 
-            fill 
-            className="object-cover opacity-60"
-            priority
-          />
+          <Image src={event.coverImage} alt={event.title} fill className="object-cover opacity-60" priority />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/20 to-transparent z-10" />
-        
         <div className="max-w-6xl mx-auto px-8 w-full mb-16 relative z-20">
           <Link href="/events" className="inline-flex items-center text-white/70 hover:text-white font-bold text-[10px] uppercase tracking-[0.2em] mb-8 transition group">
             <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform" /> Назад к миссиям
@@ -117,7 +96,8 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
 
       <main className="max-w-6xl mx-auto px-8 py-16 grid grid-cols-1 lg:grid-cols-12 gap-16">
         <div className="lg:col-span-8">
-          {/* Сетка характеристик */}
+          
+          {/* Статистика */}
           <div className="grid grid-cols-3 gap-4 mb-16 py-10 border-b border-slate-100">
             {event.stats.map((s, i) => (
               <div key={i} className="flex flex-col gap-2">
@@ -134,33 +114,59 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
               {event.fullDesc}
             </p>
 
-            {/* ГАЛЕРЕЯ */}
-            {event.gallery.length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
-                {event.gallery.map((img, index) => (
-                  <div key={index} className="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 group">
-                    <Image 
-                      src={img} 
-                      alt={`Детали миссии ${index + 1}`} 
-                      fill 
-                      className="object-cover transition-transform duration-500 group-hover:scale-110"
-                    />
-                  </div>
-                ))}
+            {/* Блок видео */}
+            {event.videos && event.videos.length > 0 && (
+              <div className="mb-16 bg-slate-50 p-8 rounded-[40px] border border-slate-100">
+                <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400 mb-6 flex items-center gap-2">
+                  <Play size={14} fill="currentColor"/> Видеоотчеты
+                </h4>
+                <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar snap-x">
+                  {event.videos.map((vid, idx) => (
+                    <div key={idx} className="relative w-64 aspect-[9/16] shrink-0 snap-start rounded-3xl overflow-hidden shadow-2xl bg-black border border-slate-200">
+                      <video 
+                        controls 
+                        playsInline 
+                        muted 
+                        preload="metadata"
+                        poster={event.coverImage} 
+                        className="w-full h-full object-cover"
+                      >
+                        <source src={vid} type="video/mp4" />
+                        <source src={vid} type="video/quicktime" />
+                        Браузер не поддерживает видео.
+                      </video>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
+
+            {/* Галерея */}
+            <h3 className="text-sm font-black text-blue-600 mb-6 uppercase tracking-[0.3em]">Фотоархив</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+              {event.gallery.map((img, index) => (
+                <div key={index} className="relative aspect-square rounded-3xl overflow-hidden bg-slate-100 group border border-slate-100">
+                  <Image 
+                    src={img} 
+                    alt={`Фото ${index + 1}`} 
+                    fill 
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
         {/* Сайдбар */}
         <div className="lg:col-span-4">
-          <div className="bg-slate-50 rounded-[40px] p-8 sticky top-32 border border-slate-100 shadow-sm">
+          <div className="bg-slate-50 rounded-[40px] p-8 sticky top-32 border border-slate-100">
             <div className="flex items-center gap-4 mb-8">
                <div className="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-sm">
                 <ShieldCheck className="text-blue-600" size={24} />
                </div>
                <span className="font-black text-[10px] uppercase tracking-widest leading-tight text-slate-900">
-                 Документация <br/> проверена
+                 Отчетность <br/> подтверждена
                </span>
             </div>
             
@@ -176,7 +182,7 @@ export default function EventDetailPage({ params }: { params: Promise<{ id: stri
             </div>
 
             <button className="w-full bg-slate-900 text-white py-5 rounded-2xl font-black uppercase tracking-widest text-[10px] flex items-center justify-center gap-2 hover:bg-blue-600 transition-all shadow-lg">
-              <Download size={18} /> Технический отчет
+              <Download size={18} /> Скачать отчет (PDF)
             </button>
           </div>
         </div>

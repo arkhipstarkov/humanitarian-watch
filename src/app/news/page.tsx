@@ -7,28 +7,28 @@ import Link from 'next/link';
 export default function NewsPage() {
   const articles = [
     {
-      id: "1", // Используем строки для ID
-      category: "Законодательство",
-      date: "22 Января, 2026",
-      title: "Новые льготы для участников СВО: подробный разбор указа",
-      excerpt: "Сегодня были опубликованы уточнения по программе социальной газификации и земельным наделам...",
-      image: "bg-blue-600"
+      id: "1",
+      category: "Выплаты",
+      date: "24 Января, 2026",
+      title: "Выплаты по инвалидности в 2026 году: ежемесячные компенсации и индексация",
+      excerpt: "Подробный разбор новых размеров компенсаций за военную травму для I, II и III групп, а также график индексации ЕДВ с 1 февраля.",
+      image: "bg-slate-900"
     },
     {
       id: "2",
-      category: "События",
-      date: "20 Января, 2026",
-      title: "Открытие филиала в Ростове-на-Дону",
-      excerpt: "Новый центр координации помощи начнет работу уже в следующий понедельник.",
-      image: "bg-slate-800"
+      category: "Развитие",
+      date: "23 Января, 2026",
+      title: "Открытие филиала Гуманитарного дозора в Донецке",
+      excerpt: "Создаем ключевой логистический узел на Донбассе: склад спецсредств, юридическая помощь и оперативный штаб поддержки ветеранов.",
+      image: "bg-blue-600"
     },
     {
       id: "3",
-      category: "Истории",
-      date: "18 Января, 2026",
-      title: "Как спорт помогает вернуться к мирной жизни",
-      excerpt: "Интервью с мастером спорта, который открыл школу единоборств для ветеранов.",
-      image: "bg-indigo-500"
+      category: "Земля",
+      date: "21 Января, 2026",
+      title: "Земельные участки участникам СВО: сертификаты и компенсации в 2026 году",
+      excerpt: "Новые правила получения земли: упрощенные процедуры, возможность денежной выплаты взамен участка и региональные особенности.",
+      image: "bg-emerald-700"
     }
   ];
 
@@ -48,7 +48,6 @@ export default function NewsPage() {
       <main className="max-w-7xl mx-auto px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {articles.map((post, index) => (
-            /* Теперь вся карточка — это ссылка */
             <Link 
               href={`/news/${post.id}`} 
               key={post.id} 
@@ -83,9 +82,8 @@ export default function NewsPage() {
                       Читать статью <ArrowRight size={16} className="-rotate-45 group-hover:rotate-0 transition-transform" />
                     </div>
                     
-                    {/* Кнопка поделиться (предотвращаем переход по ссылке при клике на неё) */}
                     <button 
-                      onClick={(e) => { e.preventDefault(); /* логика шаринга */ }}
+                      onClick={(e) => { e.preventDefault(); }}
                       className="p-4 bg-slate-50 rounded-2xl hover:bg-blue-600 hover:text-white transition-all text-slate-400"
                     >
                       <Share2 size={20} />
