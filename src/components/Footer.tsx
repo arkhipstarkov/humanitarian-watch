@@ -69,7 +69,7 @@ export default function Footer() {
               
               {/* ПРАВКА: Ссылка на Google Карты для адреса */}
               <a 
-                href="https://www.google.com/maps/search/?api=1&query=Краснодар,+ул+Айвазовского+44" 
+                href="https://yandex.ru/maps/?text=Краснодар+Айвазовского+44" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="flex items-start gap-4 group cursor-pointer"

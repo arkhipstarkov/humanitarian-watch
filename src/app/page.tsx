@@ -152,7 +152,7 @@ export default function Home() {
               </div>
 
               <a 
-                href="https://www.google.com/maps/search/?api=1&query=Краснодар,Айвазовского,44" 
+                href="https://yandex.ru/maps/?text=Краснодар+Айвазовского+44" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-4 bg-[#1A1C20] text-white px-10 py-5 rounded-2xl text-sm font-black uppercase tracking-widest hover:bg-blue-600 transition-all shadow-xl active:scale-95 group"
