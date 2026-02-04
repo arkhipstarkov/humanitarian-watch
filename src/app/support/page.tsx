@@ -82,7 +82,7 @@ export default function SupportPage() {
               <div className="inline-flex flex-col">
                 <span className="text-slate-500 text-[10px] font-black uppercase tracking-widest mb-2 text-left">Горячая линия</span>
                 <div className="flex items-center gap-4 text-3xl font-black tracking-tighter text-white hover:text-blue-500 transition-colors cursor-pointer">
-                  <PhoneCall size={32} className="text-blue-500" /> 8 (928) 881-88-11
+                  <PhoneCall size={32} className="text-blue-500" /> 8 (928) 881-88-11 / 8 (918) 440-22-20
                 </div>
               </div>
             </div>

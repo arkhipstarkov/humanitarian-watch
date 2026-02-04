@@ -29,9 +29,16 @@ export default function Footer() {
               Прозрачность, оперативность и адресная помощь ветеранам. Мы создаем систему, где важен каждый голос.
             </p>
             <div className="flex gap-4">
-              <Link href="#" className="w-12 h-12 bg-slate-800 rounded-2xl flex items-center justify-center hover:bg-blue-600 transition-all duration-500 group">
+              {/* ПРАВКА: Ссылка на Telegram */}
+              <a 
+                href="https://t.me/+FXAPtHfchaUwNDky" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-12 h-12 bg-slate-800 rounded-2xl flex items-center justify-center hover:bg-blue-600 transition-all duration-500 group"
+              >
                 <Send size={20} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-              </Link>
+              </a>
+              
               <Link href="#" className="w-12 h-12 bg-slate-800 rounded-2xl flex items-center justify-center hover:bg-blue-600 transition-all duration-500">
                 <Youtube size={20} />
               </Link>
@@ -59,25 +66,36 @@ export default function Footer() {
           <div className="md:col-span-4">
             <h4 className="text-[10px] font-black uppercase tracking-[0.3em] text-blue-500 mb-8">Связь с Дозором</h4>
             <div className="space-y-6">
-              <div className="flex items-start gap-4">
-                <MapPin className="text-slate-600 shrink-0" size={20} />
-                <p className="text-slate-300 font-medium text-sm">350040, Краснодар, ул Айвазовского 44/Свободная 45<br/></p>
-              </div>
+              
+              {/* ПРАВКА: Ссылка на Google Карты для адреса */}
+              <a 
+                href="https://www.google.com/maps/search/?api=1&query=Краснодар,+ул+Айвазовского+44" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="flex items-start gap-4 group cursor-pointer"
+              >
+                <MapPin className="text-slate-600 group-hover:text-blue-500 transition-colors shrink-0" size={20} />
+                <p className="text-slate-300 group-hover:text-white transition-colors font-medium text-sm">
+                  350040, Краснодар, ул Айвазовского 44/Свободная 45<br/>
+                  <span className="text-blue-500 text-[10px] font-black uppercase tracking-widest">Открыть на карте</span>
+                </p>
+              </a>
+
               <div className="flex items-center gap-4">
                 <Mail className="text-slate-600 shrink-0" size={20} />
-                <p className="text-slate-300 font-bold">flytime123@yandex.ru</p>
+                <p className="text-slate-300 font-bold">gumanitarnyidozor@yandex.ru</p>
               </div>
               <div className="flex items-center gap-4">
                 <Phone className="text-slate-600 shrink-0" size={20} />
-                <p className="text-slate-300 font-black text-xl tracking-tighter">8 (928) 881-88-11</p>
+                <p className="text-slate-300 font-black text-xl tracking-tighter">8 (928) 881-88-11 / 8 (918) 440-22-20</p>
               </div>
             </div>
           </div>
         </div>
 
         {/* Нижняя планка */}
-        <div className="pt-12 border-t border-slate-800 flex flex-col md:row justify-between items-center gap-8">
-          <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest">
+        <div className="pt-12 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-8">
+          <p className="text-slate-500 text-[10px] font-bold uppercase tracking-widest text-center md:text-left">
             © 2026 ГУМАНИТАРНЫЙ ДОЗОР. ВСЕ ПРАВА ЗАЩИЩЕНЫ.
           </p>
           <div className="flex gap-8">

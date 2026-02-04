@@ -39,9 +39,9 @@ const EVENTS_DATABASE = [
     date: "Январь, 2026",
     location: "Донецкое направление",
     stats: [
-      { label: "Цель", value: "850 000 ₽", icon: <Target size={18} /> },
+      { label: "Цель", value: "200 000 ₽", icon: <Target size={18} /> },
       { label: "Приоритет", value: "Критический", icon: <ShieldCheck size={18} /> },
-      { label: "Собрано", value: "15%", icon: <Box size={18} /> }
+      { label: "Собрано", value: "50%", icon: <Box size={18} /> }
     ],
     color: "bg-orange-500",
     coverImage: "/images/tools_cover.png",

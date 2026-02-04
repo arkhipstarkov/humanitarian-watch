@@ -1,5 +1,5 @@
 import React from 'react';
-import { Newspaper, Heart, ArrowRight, Target, ShieldCheck, Zap } from 'lucide-react';
+import { Newspaper, Heart, ArrowRight, Target, ShieldCheck, Zap, MapPin } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -42,8 +42,8 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <main className="pt-48 pb-24 px-8 max-w-7xl mx-auto">
+        {/* Hero Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center mb-24">
           <div className="lg:col-span-8">
             <h1 className="text-6xl md:text-[100px] font-[950] leading-[0.9] tracking-tighter mb-10 uppercase italic">
@@ -60,7 +60,7 @@ export default function Home() {
               <div className="absolute top-0 right-0 w-24 h-24 bg-[#B35B2A]/5 rounded-bl-full -mr-10 -mt-10 transition-transform group-hover:scale-110" />
               <Target className="text-[#B35B2A] mb-6" size={32} />
               <h4 className="text-sm font-black uppercase tracking-widest mb-2">Активный сбор</h4>
-              <p className="text-2xl font-bold tracking-tight mb-6 leading-tight">Средства РЭБ для передовой</p>
+              <p className="text-2xl font-bold tracking-tight mb-6 leading-tight">Сварка, генераторы и инструменты для передовой</p>
               <div className="w-full h-2 bg-slate-100 rounded-full overflow-hidden mb-4">
                 <div className="h-full bg-blue-600 w-[78%] shadow-[0_0_10px_rgba(37,99,235,0.3)]" />
               </div>
@@ -120,6 +120,55 @@ export default function Home() {
                 <Zap className="mx-auto mb-2" size={24} />
                 <p className="text-lg font-black uppercase leading-tight italic">Быстрая логистика</p>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* НОВАЯ СЕКЦИЯ: Пункт приема */}
+        <div className="mb-32 bg-white rounded-[48px] p-8 md:p-16 border border-slate-100 shadow-[0_40px_100px_rgba(0,0,0,0.04)] relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-1/3 h-full bg-slate-50/50 -skew-x-12 translate-x-20 z-0" />
+          
+          <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 bg-blue-50 text-blue-600 px-4 py-2 rounded-full mb-6">
+                <MapPin size={16} className="animate-pulse" />
+                <span className="text-xs font-black uppercase tracking-widest">Локация штаба</span>
+              </div>
+              
+              <h2 className="text-5xl font-[950] uppercase italic tracking-tighter leading-tight mb-6">
+                Пункт приема <br />
+                <span className="text-blue-600">гуманитарной помощи</span>
+              </h2>
+              
+              <div className="space-y-6 mb-10">
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Адрес приема:</span>
+                  <p className="text-2xl font-bold text-[#1A1C20] leading-tight">
+                    350040, Краснодар, <br />
+                    ул. Айвазовского 44 / Свободная 45
+                  </p>
+                </div>
+                <p className="text-slate-500 font-medium">Работаем ежедневно. Перед визитом больших грузов, пожалуйста, свяжитесь с куратором.</p>
+              </div>
+
+              <a 
+                href="https://www.google.com/maps/search/?api=1&query=Краснодар,Айвазовского,44" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-4 bg-[#1A1C20] text-white px-10 py-5 rounded-2xl text-sm font-black uppercase tracking-widest hover:bg-blue-600 transition-all shadow-xl active:scale-95 group"
+              >
+                Проложить маршрут <ArrowRight size={18} className="group-hover:translate-x-2 transition-transform" />
+              </a>
+            </div>
+
+            <div className="relative h-[400px] rounded-[40px] overflow-hidden border-8 border-slate-50 shadow-inner">
+              <Image 
+                src="/images/photo-logistics.png" // Временно использую твое фото логистики, замени на фото фасада
+                alt="Пункт приема Краснодар" 
+                fill 
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-blue-600/10 mix-blend-multiply" />
             </div>
           </div>
         </div>
