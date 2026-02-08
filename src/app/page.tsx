@@ -1,5 +1,7 @@
-import React from 'react';
-import { Newspaper, Heart, ArrowRight, Target, ShieldCheck, Zap, MapPin } from 'lucide-react';
+'use client';
+
+import React, { useState } from 'react';
+import { Newspaper, Heart, ArrowRight, Target, ShieldCheck, Zap, MapPin, Phone, X } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -13,6 +15,9 @@ interface FeatureCardProps {
 }
 
 export default function Home() {
+  // Состояние для модального окна (всплывающее фото)
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
   return (
     <div className="min-h-screen bg-[#FDFDFF] text-[#1A1C20] font-sans">
       {/* Навигация */}
@@ -77,15 +82,18 @@ export default function Home() {
             <h2 className="text-5xl font-[950] uppercase italic tracking-tighter leading-none">
               Дозор в <span className="text-blue-600">действии</span>
             </h2>
-            <p className="text-slate-400 font-medium max-w-sm text-right">
-              Реальные отчеты, доставка грузов и работа в центрах восстановления.
+            <p className="text-slate-400 font-medium max-w-sm text-right italic">
+              Нажмите на фото, чтобы рассмотреть детали.
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 h-[600px]">
-            <div className="md:col-span-2 relative rounded-[40px] overflow-hidden group">
+            <div 
+              onClick={() => setSelectedImage('/images/gumanitarka_01.webp')}
+              className="md:col-span-2 relative rounded-[40px] overflow-hidden group cursor-zoom-in"
+            >
               <Image 
-                src="/images/photo-front-1.png" 
+                src="/images/gumanitarka_01.webp" 
                 alt="Фронт" 
                 fill 
                 className="object-cover transition-transform duration-700 group-hover:scale-110" 
@@ -95,22 +103,28 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="relative rounded-[40px] overflow-hidden group">
+            <div 
+              onClick={() => setSelectedImage('/images/gumanitarka_02.webp')}
+              className="relative rounded-[40px] overflow-hidden group cursor-zoom-in"
+            >
               <Image 
-                src="/images/photo-back-1.png" 
-                alt="Реабилитация" 
+                src="/images/gumanitarka_02.webp" 
+                alt="Груз доставлен" 
                 fill 
                 className="object-cover transition-transform duration-700 group-hover:scale-110" 
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8 text-white">
-                <span className="text-sm font-black uppercase tracking-widest italic">Реабилитация</span>
+                <span className="text-sm font-black uppercase tracking-widest italic">Груз доставлен</span>
               </div>
             </div>
 
             <div className="grid grid-rows-2 gap-4">
-              <div className="relative rounded-[32px] overflow-hidden group">
+              <div 
+                onClick={() => setSelectedImage('/images/gumanitarka_03.webp')}
+                className="relative rounded-[32px] overflow-hidden group cursor-zoom-in"
+              >
                 <Image 
-                  src="/images/photo-logistics.png" 
+                  src="/images/gumanitarka_03.webp" 
                   alt="Логистика" 
                   fill 
                   className="object-cover transition-transform duration-700 group-hover:scale-110" 
@@ -124,7 +138,7 @@ export default function Home() {
           </div>
         </div>
 
-        {/* НОВАЯ СЕКЦИЯ: Пункт приема */}
+        {/* СЕКЦИЯ: Пункт приема */}
         <div className="mb-32 bg-white rounded-[48px] p-8 md:p-16 border border-slate-100 shadow-[0_40px_100px_rgba(0,0,0,0.04)] relative overflow-hidden">
           <div className="absolute top-0 right-0 w-1/3 h-full bg-slate-50/50 -skew-x-12 translate-x-20 z-0" />
           
@@ -140,15 +154,29 @@ export default function Home() {
                 <span className="text-blue-600">гуманитарной помощи</span>
               </h2>
               
-              <div className="space-y-6 mb-10">
-                <div className="flex flex-col">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Адрес приема:</span>
-                  <p className="text-2xl font-bold text-[#1A1C20] leading-tight">
-                    350040, Краснодар, <br />
-                    ул. Айвазовского 44 / Свободная 45
+              <div className="space-y-8 mb-10">
+                <div className="flex flex-col border-l-4 border-blue-600 pl-6">
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">Адрес в Краснодаре:</span>
+                  <p className="text-3xl font-bold text-[#1A1C20] leading-tight">
+                    ул. Айвазовского 44 <br /> 
+                    <span className="text-slate-400 font-medium">/ Свободная 45</span>
                   </p>
                 </div>
-                <p className="text-slate-500 font-medium">Работаем ежедневно. Перед визитом больших грузов, пожалуйста, свяжитесь с куратором.</p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                   <a href="tel:+79288818811" className="group flex flex-col p-4 rounded-3xl bg-slate-50 hover:bg-blue-600 transition-all">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-blue-100 mb-2">Куратор 1</span>
+                      <span className="text-xl font-black group-hover:text-white flex items-center gap-2">
+                        <Phone size={18} /> 8 928 881-88-11
+                      </span>
+                   </a>
+                   <a href="tel:+79184340008" className="group flex flex-col p-4 rounded-3xl bg-slate-50 hover:bg-blue-600 transition-all">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-blue-100 mb-2">Куратор 2</span>
+                      <span className="text-xl font-black group-hover:text-white flex items-center gap-2">
+                        <Phone size={18} /> 8 918 434-00-08
+                      </span>
+                   </a>
+                </div>
               </div>
 
               <a 
@@ -161,14 +189,17 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="relative h-[400px] rounded-[40px] overflow-hidden border-8 border-slate-50 shadow-inner">
+            <div 
+              onClick={() => setSelectedImage('/images/punkt_priema.webp')}
+              className="relative h-[450px] rounded-[40px] overflow-hidden border-8 border-slate-50 shadow-2xl group cursor-zoom-in"
+            >
               <Image 
-                src="/images/photo-logistics.png" // Временно использую твое фото логистики, замени на фото фасада
+                src="/images/punkt_priema.webp" 
                 alt="Пункт приема Краснодар" 
                 fill 
-                className="object-cover"
+                className="object-cover transition-transform duration-1000 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-blue-600/10 mix-blend-multiply" />
+              <div className="absolute inset-0 bg-blue-600/5 mix-blend-multiply" />
             </div>
           </div>
         </div>
@@ -197,6 +228,35 @@ export default function Home() {
           />
         </div>
       </main>
+
+      {/* ВСПЛЫВАЮЩЕЕ ОКНО (MODAL) */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 animate-in fade-in duration-300"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            className="absolute top-8 right-8 text-white hover:text-blue-400 transition-colors z-[110]"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedImage(null);
+            }}
+          >
+            <X size={48} />
+          </button>
+          
+          <div className="relative w-full max-w-5xl h-[80vh] flex items-center justify-center animate-in zoom-in-95 duration-300">
+            <Image 
+              src={selectedImage} 
+              alt="Увеличенное изображение" 
+              fill
+              className="object-contain rounded-xl shadow-2xl"
+              unoptimized
+              priority
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

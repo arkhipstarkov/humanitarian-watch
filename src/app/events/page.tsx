@@ -1,16 +1,23 @@
 "use client";
 
 import React, { useState } from 'react';
+// ИСПРАВЛЕНО: Изменено с lucide-center на lucide-react
 import { ArrowLeft, Target, MapPin, CalendarDays, ArrowRight, Wrench, X, Copy, Check } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+
+// Импортируем данные для синхронизации. 
+// ВАЖНО: Убедись, что путь корректен относительно твоей структуры папок.
+// Если файл лежит в app/events/[id]/page.tsx, то путь ниже верный:
+import { TOOLS_MISSION_DATA } from './[id]/page'; 
 
 export default function EventsPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [copiedField, setCopiedField] = useState<string | null>(null);
 
-  const activeGoal = 850000; 
-  const activeCurrent = 127500; 
+  // Данные теперь берутся из общего источника
+  const activeGoal = TOOLS_MISSION_DATA.goal; 
+  const activeCurrent = TOOLS_MISSION_DATA.current; 
   const activeProgress = (activeCurrent / activeGoal) * 100;
 
   const copyToClipboard = (text: string, field: string) => {
@@ -179,7 +186,7 @@ export default function EventsPage() {
               <div className="lg:col-span-4 flex flex-col items-center justify-center bg-slate-50 rounded-[40px] p-8 border border-slate-100">
                 <div className="relative w-48 h-48 bg-white p-4 rounded-3xl shadow-inner mb-6">
                    <Image 
-                     src="/images/qr-sbp.png" 
+                     src="/images/qr-sbp.webp" 
                      alt="QR для оплаты" 
                      fill 
                      className="object-contain p-2" 
