@@ -5,7 +5,7 @@ import { ArrowLeft, Target, MapPin, CalendarDays, ArrowRight, Wrench, X, Copy, C
 import Link from 'next/link';
 import Image from 'next/image';
 
-// Импортируем данные для синхронизации. 
+// Импортируем данные для синхронизации
 import { TOOLS_MISSION_DATA } from './[id]/page'; 
 
 export default function EventsPage() {
@@ -118,7 +118,6 @@ export default function EventsPage() {
         </div>
       )}
 
-      {/* ШАПКА */}
       <header className="max-w-6xl mx-auto px-6 pt-16 pb-12">
         <Link href="/" className="inline-flex items-center text-slate-400 hover:text-blue-600 font-bold text-xs tracking-widest uppercase transition mb-8 group">
           <ArrowLeft size={18} className="mr-2 group-hover:-translate-x-1 transition-transform" /> 
@@ -180,11 +179,11 @@ export default function EventsPage() {
                 </div>
               </div>
 
-              {/* БЛОК С QR-КОДОМ - ИСПРАВЛЕН ФОРМАТ И ДОБАВЛЕН КЭШ-БАСТИНГ */}
+              {/* ОБНОВЛЕННЫЙ ПУТЬ К QR-КОДУ БЕЗ ПАРАМЕТРОВ */}
               <div className="lg:col-span-4 flex flex-col items-center justify-center bg-slate-50 rounded-[40px] p-8 border border-slate-100">
                 <div className="relative w-48 h-48 bg-white p-4 rounded-3xl shadow-inner mb-6">
                    <Image 
-                     src="/images/qr-sbp.webp?v=2" 
+                     src="/images/qr-sbp-v2.webp" 
                      alt="QR для оплаты СБП" 
                      fill 
                      className="object-contain p-2" 
