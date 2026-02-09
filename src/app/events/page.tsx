@@ -1,14 +1,11 @@
 "use client";
 
 import React, { useState } from 'react';
-// ИСПРАВЛЕНО: Изменено с lucide-center на lucide-react
 import { ArrowLeft, Target, MapPin, CalendarDays, ArrowRight, Wrench, X, Copy, Check } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
 
 // Импортируем данные для синхронизации. 
-// ВАЖНО: Убедись, что путь корректен относительно твоей структуры папок.
-// Если файл лежит в app/events/[id]/page.tsx, то путь ниже верный:
 import { TOOLS_MISSION_DATA } from './[id]/page'; 
 
 export default function EventsPage() {
@@ -183,17 +180,19 @@ export default function EventsPage() {
                 </div>
               </div>
 
+              {/* БЛОК С QR-КОДОМ - ИСПРАВЛЕН ФОРМАТ И ДОБАВЛЕН КЭШ-БАСТИНГ */}
               <div className="lg:col-span-4 flex flex-col items-center justify-center bg-slate-50 rounded-[40px] p-8 border border-slate-100">
                 <div className="relative w-48 h-48 bg-white p-4 rounded-3xl shadow-inner mb-6">
                    <Image 
-                     src="/images/qr-sbp.webp" 
-                     alt="QR для оплаты" 
+                     src="/images/qr-sbp.webp?v=2" 
+                     alt="QR для оплаты СБП" 
                      fill 
                      className="object-contain p-2" 
+                     priority
                    />
                 </div>
                 <p className="text-[10px] font-black uppercase tracking-widest text-center text-slate-400 leading-tight">
-                  Сканируйте QR-код <br/> для быстрого перевода
+                  Сканируйте QR-код <br/> для быстрого перевода через СБП
                 </p>
               </div>
             </div>
